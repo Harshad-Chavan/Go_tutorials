@@ -21,3 +21,10 @@ func main() {
 // ./first-app
 
 // libraries are not executbales so they dont need to have a main fucntion
+
+// statically type take care of data types
+
+// go run . command executes the module
+
+// shortcut ti assign and declare a variable where type will be infered by go
+// variableName := <some_value>
