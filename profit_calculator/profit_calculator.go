@@ -4,19 +4,14 @@ import "fmt"
 
 func main() {
 	//declare required data
-	var revenue float64
-	var expenses float64
-	var taxRate float64
+	// var revenue float64
+	// var expenses float64
+	// var taxRate float64
 
 	//fetch data from the user
-	fmt.Print("Enter revevnur in $ : ")
-	fmt.Scan(&revenue)
-
-	fmt.Print("Enter expense in $ : ")
-	fmt.Scan(&expenses)
-
-	fmt.Print("Enter Tax rate: ")
-	fmt.Scan(&taxRate)
+	revenue := getUserInput("Revenue :")
+	expenses := getUserInput("Expenses :")
+	taxRate := getUserInput("Tax Rate :")
 
 	ebt := revenue - expenses
 
@@ -28,4 +23,11 @@ func main() {
 	fmt.Println(eat)
 	fmt.Println(ratio)
 
+}
+
+func getUserInput(infotext string) float64 {
+	var userInput float64
+	fmt.Print(infotext)
+	fmt.Scan(&userInput)
+	return userInput
 }
