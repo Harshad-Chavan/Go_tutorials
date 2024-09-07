@@ -33,3 +33,7 @@ func main() {
 var some_variable float64/int64
 
 // use back tick for muliti line strings
+
+
+// there is no while loop in go only for loop
+// use the for loop in such a way that it becomes infinite
