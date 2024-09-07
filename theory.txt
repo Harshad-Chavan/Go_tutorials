@@ -28,3 +28,6 @@ func main() {
 
 // shortcut ti assign and declare a variable where type will be infered by go
 // variableName := <some_value>
+
+// while delcaring a varibale it is neccessar to assign the datatype 
+var some_variable float64/int64
