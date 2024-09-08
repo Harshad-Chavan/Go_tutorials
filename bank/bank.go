@@ -21,9 +21,11 @@ func main() {
 		fmt.Print("your choice : ")
 		fmt.Scan(&choice)
 
-		if choice == 1 {
+		//same flow using swtich statement
+		switch choice {
+		case 1:
 			fmt.Println("Balance :", accountBalance)
-		} else if choice == 2 {
+		case 2:
 			var amount float64
 			fmt.Println("how much you want to deposit :")
 			fmt.Scan(&amount)
@@ -34,8 +36,7 @@ func main() {
 				accountBalance += amount
 				fmt.Println("Updated balance amount : ", accountBalance)
 			}
-
-		} else if choice == 3 {
+		case 3:
 			var amount float64
 			fmt.Println("how much you want to Withdraw :")
 			fmt.Scan(&amount)
@@ -49,12 +50,48 @@ func main() {
 			}
 			accountBalance -= amount
 			fmt.Println("Updated balance amount : ", accountBalance)
-		} else {
+		default:
 			fmt.Println("Exiting")
-			break
+			fmt.Println("Thank you !! for banking with us")
+			return
+
 		}
+
+		// 	if choice == 1 {
+		// 		fmt.Println("Balance :", accountBalance)
+		// 	} else if choice == 2 {
+		// 		var amount float64
+		// 		fmt.Println("how much you want to deposit :")
+		// 		fmt.Scan(&amount)
+		// 		if amount <= 0 {
+		// 			fmt.Println("Invalic amount must be greater than zero")
+		// 			continue
+		// 		} else {
+		// 			accountBalance += amount
+		// 			fmt.Println("Updated balance amount : ", accountBalance)
+		// 		}
+
+		// 	} else if choice == 3 {
+		// 		var amount float64
+		// 		fmt.Println("how much you want to Withdraw :")
+		// 		fmt.Scan(&amount)
+		// 		if amount <= 0 {
+		// 			fmt.Println("Invalic amount must be greater than zero")
+		// 			continue
+		// 		}
+		// 		if amount > accountBalance {
+		// 			fmt.Println("Amount cant be greater than accountBalance")
+		// 			continue
+		// 		}
+		// 		accountBalance -= amount
+		// 		fmt.Println("Updated balance amount : ", accountBalance)
+		// 	} else {
+		// 		fmt.Println("Exiting")
+		// 		break
+		// 	}
+		// }
+
+		// fmt.Println("Thank you !! for banking with us")
+
 	}
-
-	fmt.Println("Thank you !! for banking with us")
-
 }
