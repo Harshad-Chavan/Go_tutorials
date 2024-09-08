@@ -1,10 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
+const accountBalanceFile = "balance.txt"
+
+func getBalanceFromFile() float64 {
+	data, _ := os.ReadFile(accountBalanceFile)
+	balanceText := string(data)
+	balance, _ := strconv.ParseFloat(balanceText, 64)
+	return balance
+
+}
+
+func writeBalanceToFile(balance float64) {
+	balanceTxt := fmt.Sprint(balance)
+	os.WriteFile(accountBalanceFile, []byte(balanceTxt), 0644)
+
+}
 
 func main() {
 
-	var accountBalance float64 = 1000
+	var accountBalance float64
+	accountBalance = getBalanceFromFile()
+
 	fmt.Println("Welcome to the bank")
 
 	// for loop without any condition runs like a while loop
@@ -35,6 +57,7 @@ func main() {
 			} else {
 				accountBalance += amount
 				fmt.Println("Updated balance amount : ", accountBalance)
+				writeBalanceToFile(accountBalance)
 			}
 		case 3:
 			var amount float64
@@ -50,6 +73,7 @@ func main() {
 			}
 			accountBalance -= amount
 			fmt.Println("Updated balance amount : ", accountBalance)
+			writeBalanceToFile(accountBalance)
 		default:
 			fmt.Println("Exiting")
 			fmt.Println("Thank you !! for banking with us")

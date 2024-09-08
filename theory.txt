@@ -37,3 +37,7 @@ var some_variable float64/int64
 
 // there is no while loop in go only for loop
 // use the for loop in such a way that it becomes infinite
+
+
+// to write something to a file first it needt ot be converted to string
+// and then to a collection of bytes
