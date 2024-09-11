@@ -56,3 +56,19 @@ var some_variable float64/int64
 // to install 3P pacakge use -go get- command
 
 //this changes the mod file an makes an entry for the 3P paclage
+
+
+// pointers basically store mem address of the some_value
+// when you pass a variable to a fucntion a copy of that variable is created in the memmory and that is updated 
+// so if there is large data if you pass it a copy of that data will be created that might cause memory issue
+
+// if a vairble is a pointer its dtype will have *dtype
+
+
+// & --> gives you the address for that memory location
+// * --> gives the value at that address
+
+// pointer = &varibale_name 
+// value = *pointer
+
+// can't perform pointer artthmatic
