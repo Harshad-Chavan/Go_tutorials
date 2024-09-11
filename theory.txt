@@ -72,3 +72,14 @@ var some_variable float64/int64
 // value = *pointer
 
 // can't perform pointer artthmatic
+
+
+// Structs 
+
+// to group related data into a single value
+
+// steps:
+1. create a custom type using type keyword
+2. ex. type User
+3. customs types should be a Structs type User struct
+
