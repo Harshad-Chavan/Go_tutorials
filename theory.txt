@@ -52,3 +52,7 @@ var some_variable float64/int64
 // only fucntion/vairbale/const names that start with a capitla letter are available in other pacakges
 
 // used go mod tidy resolve the package no provided issue
+
+// to install 3P pacakge use -go get- command
+
+//this changes the mod file an makes an entry for the 3P paclage

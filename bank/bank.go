@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"example.com/bank/fileops"
+	"github.com/Pallinder/go-randomdata"
 )
 
 const accountBalanceFile = "balance.txt"
@@ -22,6 +23,7 @@ func main() {
 	}
 
 	fmt.Println("Welcome to the bank")
+	fmt.Println("Reach us at --> ", randomdata.PhoneNumber())
 	presentOptions()
 
 	// for loop without any condition runs like a while loop
