@@ -1,3 +1,3 @@
-module exmaple.com/bank
+module example.com/bank
 
 go 1.23.0

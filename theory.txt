@@ -41,3 +41,14 @@ var some_variable float64/int64
 
 // to write something to a file first it needt ot be converted to string
 // and then to a collection of bytes
+
+// panic ois used to fail the programe with some exception trace
+
+
+// files belong to a package.. if multiple files belong the same pacakge the funcs can be used
+
+// imports are not shared among files in a pakacge
+
+// only fucntion/vairbale/const names that start with a capitla letter are available in other pacakges
+
+// used go mod tidy resolve the package no provided issue
