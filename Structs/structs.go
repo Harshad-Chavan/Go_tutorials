@@ -45,7 +45,12 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	fmt.Println(userFirstName, userLastName, userBirthdate)
+	outputUserDetails(appUser)
+}
+
+func outputUserDetails(userData user) {
+	fmt.Println(userData.firstName, userData.lastName, userData.birthDate)
+
 }
 
 func getUserData(promptText string) string {
