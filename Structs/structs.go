@@ -13,6 +13,13 @@ type user struct {
 	createdAt time.Time
 }
 
+// fucntion attahced to a user now called a method
+// (userData user) is called as receiver
+func (userData user) outputUserDetails() {
+	fmt.Println(userData.firstName, userData.lastName, userData.birthDate)
+
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -45,13 +52,16 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	outputUserDetails(appUser)
+	// outputUserDetails(&appUser)
+
+	appUser.outputUserDetails()
 }
 
-func outputUserDetails(userData user) {
-	fmt.Println(userData.firstName, userData.lastName, userData.birthDate)
+//uisng pointers
+// func outputUserDetails(userData *user) {
+// 	fmt.Println(userData.firstName, userData.lastName, userData.birthDate)
 
-}
+// }
 
 func getUserData(promptText string) string {
 	fmt.Print(promptText)

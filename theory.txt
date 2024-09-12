@@ -83,3 +83,9 @@ var some_variable float64/int64
 2. ex. type User
 3. customs types should be a Structs type User struct
 
+
+// fucntions attahced to a struc are called methods
+
+// structs are kind of objects..after attaching the fucntion to the struct
+// you dont need to pass struct to the methods
+// instead just call it on the instantiated struct 
