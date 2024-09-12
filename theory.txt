@@ -89,3 +89,11 @@ var some_variable float64/int64
 // structs are kind of objects..after attaching the fucntion to the struct
 // you dont need to pass struct to the methods
 // instead just call it on the instantiated struct 
+
+// to attach a function we use a syntax
+// func (vname strut_type) fucn_name (params..) {}
+// this is called as receiver
+
+// this receiver works as parameter..it creates a copy in the methods
+// so we dont mutute the orignal struct
+// So pass it as a pointer

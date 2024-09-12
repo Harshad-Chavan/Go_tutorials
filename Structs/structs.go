@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -17,6 +18,18 @@ type user struct {
 // (userData user) is called as receiver
 func (userData user) outputUserDetails() {
 	fmt.Println(userData.firstName, userData.lastName, userData.birthDate)
+
+}
+
+func (userData *user) clearUserName() {
+	userData.firstName = ""
+	userData.lastName = ""
+
+}
+
+func (userData *user) capitalize() {
+	userData.firstName = strings.ToUpper(userData.firstName)
+	userData.lastName = strings.ToUpper(userData.lastName)
 
 }
 
@@ -53,7 +66,9 @@ func main() {
 	// ... do something awesome with that gathered data!
 
 	// outputUserDetails(&appUser)
-
+	appUser.capitalize()
+	appUser.outputUserDetails()
+	appUser.clearUserName()
 	appUser.outputUserDetails()
 }
 
