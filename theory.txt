@@ -100,3 +100,5 @@ var some_variable float64/int64
 
 //constuctor is just a utlity funciton responsible for creatiing a struct
 // its a normal fucntion not assoiciated with the struct
+
+//scan does not stop scannig on next line

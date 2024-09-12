@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -15,13 +16,18 @@ type user struct {
 }
 
 // fucntion to create a struct
-func newUser(userFirstName, userLastName, userBirthdate string) user {
-	return user{
+// adding some validation
+func newUser(userFirstName, userLastName, userBirthdate string) (*user, error) {
+	if userFirstName == "" || userLastName == "" || userBirthdate == "" {
+		return nil, errors.New("all values are required")
+	}
+
+	return &user{
 		firstName: userFirstName,
 		lastName:  userLastName,
 		birthDate: userBirthdate,
 		createdAt: time.Now(),
-	}
+	}, nil
 }
 
 // fucntion attahced to a user now called a method
@@ -49,10 +55,16 @@ func main() {
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
 	// declaring the varibale as a User type
-	var appUser user
+	var appUser *user
+	var err error
 
 	//instantiating the appUser struct
-	appUser = newUser(userFirstName, userLastName, userBirthdate)
+	appUser, err = newUser(userFirstName, userLastName, userBirthdate)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	fmt.Println(appUser)
 
@@ -86,6 +98,6 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
