@@ -97,3 +97,6 @@ var some_variable float64/int64
 // this receiver works as parameter..it creates a copy in the methods
 // so we dont mutute the orignal struct
 // So pass it as a pointer
+
+//constuctor is just a utlity funciton responsible for creatiing a struct
+// its a normal fucntion not assoiciated with the struct

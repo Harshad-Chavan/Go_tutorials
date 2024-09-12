@@ -14,6 +14,16 @@ type user struct {
 	createdAt time.Time
 }
 
+// fucntion to create a struct
+func newUser(userFirstName, userLastName, userBirthdate string) user {
+	return user{
+		firstName: userFirstName,
+		lastName:  userLastName,
+		birthDate: userBirthdate,
+		createdAt: time.Now(),
+	}
+}
+
 // fucntion attahced to a user now called a method
 // (userData user) is called as receiver
 func (userData user) outputUserDetails() {
@@ -42,12 +52,7 @@ func main() {
 	var appUser user
 
 	//instantiating the appUser struct
-	appUser = user{
-		firstName: userFirstName,
-		lastName:  userLastName,
-		birthDate: userBirthdate,
-		createdAt: time.Now(),
-	}
+	appUser = newUser(userFirstName, userLastName, userBirthdate)
 
 	fmt.Println(appUser)
 
