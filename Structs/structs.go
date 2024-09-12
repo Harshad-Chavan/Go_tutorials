@@ -12,11 +12,11 @@ func main() {
 	userBirthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
 	// declaring the varibale as a User type
-	// var appUser *user
-	// var err error
+	var appUser *user.User
+	var err error
 
 	//instantiating the appUser struct
-	appUser, err := user.NewUser(userFirstName, userLastName, userBirthdate)
+	appUser, err = user.NewUser(userFirstName, userLastName, userBirthdate)
 
 	if err != nil {
 		fmt.Println(err)
