@@ -10,9 +10,9 @@ import (
 )
 
 type Note struct {
-	title     string
-	content   string
-	createdAt time.Time
+	Title     string
+	Content   string
+	CreatedAt time.Time
 }
 
 func NewNote(notetitle, notecontent string) (Note, error) {
@@ -22,24 +22,25 @@ func NewNote(notetitle, notecontent string) (Note, error) {
 	}
 
 	return Note{
-		title:     notetitle,
-		content:   notecontent,
-		createdAt: time.Now(),
+		Title:     notetitle,
+		Content:   notecontent,
+		CreatedAt: time.Now(),
 	}, nil
 
 }
 
 func (note Note) DisplayNote() {
-	fmt.Println(note.title)
-	fmt.Println(note.content)
-	fmt.Println(note.createdAt)
+	fmt.Println(note.Title)
+	fmt.Println(note.Content)
+	fmt.Println(note.CreatedAt)
 
 }
 
 func (note Note) SaveToFile() error {
-	filename := strings.ReplaceAll(note.title, " ", "_")
-	filename = strings.ToLower(filename)
+	filename := strings.ReplaceAll(note.Title, " ", "_")
+	filename = strings.ToLower(filename + ".json")
 
+	// marshal will only convert data that is exported i.e starts with capital letter
 	json_content, err := json.Marshal(note)
 
 	if err != nil {
