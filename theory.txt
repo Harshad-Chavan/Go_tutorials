@@ -121,3 +121,6 @@ example :  type str string
 // scan fucntions are sued for single word input
 
 // use bufio to read user input.. method name ius NewReader
+
+// struct tags is metdatra that can be added to struct feilds
+// can be added using back ticks
