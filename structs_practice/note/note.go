@@ -1,8 +1,11 @@
 package note
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
+	"strings"
 	"time"
 )
 
@@ -30,5 +33,19 @@ func (note Note) DisplayNote() {
 	fmt.Println(note.title)
 	fmt.Println(note.content)
 	fmt.Println(note.createdAt)
+
+}
+
+func (note Note) SaveToFile() error {
+	filename := strings.ReplaceAll(note.title, " ", "_")
+	filename = strings.ToLower(filename)
+
+	json_content, err := json.Marshal(note)
+
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile(filename, json_content, 0644)
 
 }

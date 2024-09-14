@@ -56,5 +56,14 @@ func main() {
 	}
 
 	note.DisplayNote()
+	err = note.SaveToFile()
+
+	if err != nil {
+		fmt.Print(err)
+		fmt.Print("Saving the note Failed")
+		return
+	}
+
+	fmt.Print("Note saved successfully")
 
 }
