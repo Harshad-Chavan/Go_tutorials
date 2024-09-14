@@ -116,3 +116,6 @@ var some_variable float64/int64
 // type can be used to add alias to the any built in dtype
 example :  type str string
 // we can use it to add custom methods to the string builtin type
+
+
+// scan fucntions are sued for single word input

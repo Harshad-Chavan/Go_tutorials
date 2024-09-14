@@ -7,8 +7,8 @@ import (
 )
 
 func getNoteData() (string, string) {
-	noteTitle := getUserInput("Enter your note Title")
-	noteContent := getUserInput("Enter your note content")
+	noteTitle := getUserInput("Enter your note Title:")
+	noteContent := getUserInput("Enter your note content:")
 
 	return noteTitle, noteContent
 
@@ -31,6 +31,6 @@ func main() {
 		return
 	}
 
-	fmt.Print(note)
+	note.DisplayNote()
 
 }
