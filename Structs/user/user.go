@@ -15,6 +15,21 @@ type User struct {
 	createdAt time.Time
 }
 
+type Admin struct {
+	email    string
+	password string
+	User
+}
+
+func NewAdmin(email, password string, user *User) Admin {
+	return Admin{
+		email:    email,
+		password: password,
+		User:     *user,
+	}
+
+}
+
 // fucntion to create a struct
 // adding some validation
 func NewUser(userFirstName, userLastName, userBirthdate string) (*User, error) {

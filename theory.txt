@@ -102,3 +102,17 @@ var some_variable float64/int64
 // its a normal fucntion not assoiciated with the struct
 
 //scan does not stop scannig on next line
+
+// struct embedding is basically using a struct inside os struct
+// type A struct {
+	saome_value string
+	B
+}
+
+// where B is different struct that has some variable those can be used in instantiation of A as well
+
+//other custom types and methods
+
+// type can be used to add alias to the any built in dtype
+example :  type str string
+// we can use it to add custom methods to the string builtin type

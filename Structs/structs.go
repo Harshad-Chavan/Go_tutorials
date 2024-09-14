@@ -13,17 +13,22 @@ func main() {
 
 	// declaring the varibale as a User type
 	var appUser *user.User
+	var adminUserDets *user.User
 	var err error
 
 	//instantiating the appUser struct
 	appUser, err = user.NewUser(userFirstName, userLastName, userBirthdate)
+	adminUserDets, err = user.NewUser("admin_harshad", "chavan", "05/12/12")
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println(appUser)
+	adminUser := user.NewAdmin("test@ex.com", "test_123", adminUserDets)
+
+	// fmt.Println(appUser)
+	// fmt.Println(adminUser)
 
 	// alternate way of instantiating make sure the order is same
 	// appUser = user{
@@ -44,6 +49,13 @@ func main() {
 	appUser.OutputUserDetails()
 	appUser.ClearUserName()
 	appUser.OutputUserDetails()
+
+	// this if you give a name to the embeded structure
+	// adminUser.User.Capitalize()
+	// adminUser.User.OutputUserDetails()
+
+	adminUser.Capitalize()
+	adminUser.OutputUserDetails()
 }
 
 //uisng pointers
