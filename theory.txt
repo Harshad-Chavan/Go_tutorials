@@ -119,3 +119,5 @@ example :  type str string
 
 
 // scan fucntions are sued for single word input
+
+// use bufio to read user input.. method name ius NewReader
