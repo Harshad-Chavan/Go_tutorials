@@ -29,7 +29,7 @@ func NewNote(notetitle, notecontent string) (Note, error) {
 
 }
 
-func (note Note) DisplayNote() {
+func (note Note) Display() {
 	fmt.Println(note.Title)
 	fmt.Println(note.Content)
 	fmt.Println(note.CreatedAt)
