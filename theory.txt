@@ -131,3 +131,9 @@ example :  type str string
 
 // basically contract that states tha whichever sign this contract has this method
 // interfaces are methods without body
+
+
+// to accept any type of value we can use interface{}
+// or we can also use *any*
+
+// to chec type of a value in go use vaibale.(type)
