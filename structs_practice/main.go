@@ -58,6 +58,17 @@ func getUserInput(prompt string) string {
 	return text
 }
 
+func SaveData(data saver) error {
+	err := data.SaveToFile()
+
+	if err != nil {
+
+		return err
+	}
+
+	return nil
+}
+
 func main() {
 	// get user input to get the notes from the user
 	title, content := getNoteData()
@@ -69,15 +80,13 @@ func main() {
 	}
 
 	note.Display()
-	err = note.SaveToFile()
+	err = SaveData(note)
 
 	if err != nil {
 		fmt.Print(err)
 		fmt.Print("Saving the note Failed")
 		return
 	}
-
-	fmt.Print("Note saved successfully")
 
 	// TODO code
 	todoText := getTodoData()
@@ -89,7 +98,7 @@ func main() {
 	}
 
 	todo.Display()
-	err = todo.SaveToFile()
+	err = SaveData(todo)
 
 	if err != nil {
 		fmt.Print(err)
