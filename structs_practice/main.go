@@ -15,6 +15,12 @@ type saver interface {
 	SaveToFile() error
 }
 
+// embeded interface
+type outputable interface {
+	saver
+	Display()
+}
+
 func getNoteData() (string, string) {
 	noteTitle := getUserInput("Enter your note Title")
 	noteContent := getUserInput("Enter your note content")
@@ -69,6 +75,13 @@ func SaveData(data saver) error {
 	return nil
 }
 
+func Output(data outputable) error {
+	data.Display()
+	err := SaveData(data)
+	return err
+
+}
+
 func main() {
 	// get user input to get the notes from the user
 	title, content := getNoteData()
@@ -97,8 +110,7 @@ func main() {
 		return
 	}
 
-	todo.Display()
-	err = SaveData(todo)
+	err = Output(todo)
 
 	if err != nil {
 		fmt.Print(err)
