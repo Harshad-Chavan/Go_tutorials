@@ -124,3 +124,10 @@ example :  type str string
 
 // struct tags is metdatra that can be added to struct feilds
 // can be added using back ticks
+
+//interfaces
+// to write a common code that can work in different types we  need to use interfaces
+// example : saveToFile cant expect both the types Note and Todo it can take one of them as parameter
+
+// basically contract that states tha whichever sign this contract has this method
+// interfaces are methods without body

@@ -10,6 +10,11 @@ import (
 	"example.com/notes/todo"
 )
 
+// interface
+type saver interface {
+	SaveToFile() error
+}
+
 func getNoteData() (string, string) {
 	noteTitle := getUserInput("Enter your note Title")
 	noteContent := getUserInput("Enter your note content")
