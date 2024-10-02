@@ -18,4 +18,13 @@ func main() {
 	// to fetch data from a index
 	fmt.Println(prices[3])
 
+	//slicing array (first included 2nd excluded)
+	fmt.Println(prices[1:3])
+
+	// slicing array
+	fmt.Println(prices[:3])
+
+	fmt.Println(prices[:3][1:2])
+
+	// cant use negative slicng index..cant pick higher indexx than orignal aray size
 }
