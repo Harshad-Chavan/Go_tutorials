@@ -137,3 +137,13 @@ example :  type str string
 // or we can also use *any*
 
 // to chec type of a value in go use vaibale.(type)
+
+
+// generics is a feature that allows us to senf any type of arguments 
+// to a fucntion
+
+
+// Array syntax
+// [number of values it can hold]float64{ values to be stored}
+// it is basically a set of datapoints for a particular type of data
+// ex : list of prices, weather data
