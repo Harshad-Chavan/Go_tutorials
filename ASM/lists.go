@@ -34,5 +34,18 @@ func main() {
 
 	fmt.Println(prices)
 
-	fmt.Print(len(changeprices), cap(changeprices))
+	fmt.Println(len(changeprices), cap(changeprices))
+
+	// this is an dynamic array
+	dynamic_price := []float64{100, 200}
+
+	// cant be done as the slice has only 2 elemetns
+	//dynamic_price[3] = 300
+
+	// append fucntion go cretes a new array and does not modify the slice
+	dynamic_price_2 := append(dynamic_price, 300)
+
+	fmt.Print(dynamic_price)
+	fmt.Print(dynamic_price_2)
+
 }

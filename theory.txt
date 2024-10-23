@@ -157,3 +157,11 @@ example :  type str string
 // slice_1 = main_array[:1]
 // slice_1 = slice_1[:3]
 // but this can be done only to the left and not to the right
+
+// we cant always pre-set the array size . example we want to fetch records from a db
+// and store it in an array the number of recrods change frequently 
+// to handle this we can build dynamic arrays using slices
+
+// Go creates an array in the backgroud and gives you a slice to work on
+// as the slice grows in size beyond the array that is created in the background
+// go ditches that array and creates a new one
