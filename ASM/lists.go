@@ -27,4 +27,12 @@ func main() {
 	fmt.Println(prices[:3][1:2])
 
 	// cant use negative slicng index..cant pick higher indexx than orignal aray size
+
+	//modifying usinf slices
+	changeprices := prices[2:4] //2.2, 3.3
+	changeprices[0] = 10.5      // 10.5, 3.3
+
+	fmt.Println(prices)
+
+	fmt.Print(len(changeprices), cap(changeprices))
 }

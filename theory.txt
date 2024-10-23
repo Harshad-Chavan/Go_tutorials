@@ -147,3 +147,13 @@ example :  type str string
 // [number of values it can hold]float64{ values to be stored}
 // it is basically a set of datapoints for a particular type of data
 // ex : list of prices, weather data
+// array slices are just windows to view thw array
+// creating a slice does not create a copy of the orignal array
+// if from a slice i modify the content orignal array content would be modified
+// len() gives the number of elements in the array/ slice
+// capcaity  [cap()] is a bit different it is basically how many elements the array hold
+// capacity always goes to the left 
+// go memorizes the whole array at once so we can always resize a slice of th array
+// slice_1 = main_array[:1]
+// slice_1 = slice_1[:3]
+// but this can be done only to the left and not to the right
