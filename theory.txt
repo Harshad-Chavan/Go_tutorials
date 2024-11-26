@@ -165,3 +165,5 @@ example :  type str string
 // Go creates an array in the backgroud and gives you a slice to work on
 // as the slice grows in size beyond the array that is created in the background
 // go ditches that array and creates a new one
+
+//append can add as many values as we want

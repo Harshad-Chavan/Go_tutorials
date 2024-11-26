@@ -65,4 +65,12 @@ func main() {
 		fmt.Println(products[i])
 	}
 
+	//we cant directly append one list to another to do that we have to use a specail syntax
+
+	numbers := []int64{1, 2, 3}
+	newNumbers := []int64{4, 5, 6}
+
+	allNumbers := append(numbers, newNumbers...)
+
+	fmt.Println(allNumbers)
 }
