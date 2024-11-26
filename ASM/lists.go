@@ -46,6 +46,23 @@ func main() {
 	dynamic_price_2 := append(dynamic_price, 300)
 
 	fmt.Print(dynamic_price)
-	fmt.Print(dynamic_price_2)
+	fmt.Println(dynamic_price_2)
+
+	//practice
+	type Product struct {
+		id         int64
+		name       string
+		decription string
+	}
+
+	//creating and array
+	productOne := Product{id: 101, name: "Milk", decription: "cow milk"}
+	productTwo := Product{id: 102, name: "Bread", decription: "Brown Bread"}
+	products := []Product{productOne}
+	products = append(products, productTwo)
+
+	for i := 0; i < len(products); i++ {
+		fmt.Println(products[i])
+	}
 
 }
