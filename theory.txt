@@ -167,3 +167,9 @@ example :  type str string
 // go ditches that array and creates a new one
 
 //append can add as many values as we want
+
+
+//Functions deep dive
+
+
+
