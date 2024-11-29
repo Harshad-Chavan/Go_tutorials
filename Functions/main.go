@@ -15,6 +15,9 @@ func main() {
 	fmt.Println(transformNumbers(&numbers, double))
 	fmt.Println(transformNumbers(&numbers, triple))
 
+	fmt.Println(transformNumbers(&numbers, getTransformfunc("d")))
+	fmt.Println(transformNumbers(&numbers, getTransformfunc("t")))
+
 }
 
 // funciton that uses for loop to double the number
@@ -49,4 +52,13 @@ func double(val int) int {
 
 func triple(val int) int {
 	return val * 3
+}
+
+// fucntions can return other fucntions
+func getTransformfunc(condition string) transformFn {
+	if condition == "d" {
+		return double
+	} else {
+		return triple
+	}
 }
