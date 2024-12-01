@@ -2,7 +2,7 @@ package prices
 
 import (
 	"example/price_calculator/conversion"
-	"example/price_calculator/filemanager"
+	"example/price_calculator/iomanager"
 	"fmt"
 )
 
@@ -11,11 +11,11 @@ type TaxIncludedPriceJob struct {
 	InputPrices       []float64          `json:"input_prices"`
 	TaxIncludedPrices map[string]float64 `json:"tax_inlcuded_prices"`
 	// the json tag says that it will be ignored in output json
-	IoManager filemanager.FileManager `json:"-"`
+	IoManager iomanager.IoManager `json:"-"`
 }
 
 // contructor for the price job obj
-func NewTaxIncludedPriceJob(fm filemanager.FileManager, taxrate float64) *TaxIncludedPriceJob {
+func NewTaxIncludedPriceJob(fm iomanager.IoManager, taxrate float64) *TaxIncludedPriceJob {
 	// returns a taxincluded price job
 
 	newStruc := TaxIncludedPriceJob{
