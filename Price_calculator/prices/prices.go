@@ -12,6 +12,19 @@ type TaxIncludedPriceJob struct {
 	TaxIncludedPrices map[string]float64
 }
 
+// contructor for the price job obj
+func NewTaxIncludedPriceJob(taxrate float64) *TaxIncludedPriceJob {
+	// returns a taxincluded price job
+
+	newStruc := TaxIncludedPriceJob{
+		TaxRate:     taxrate,
+		InputPrices: []float64{},
+	}
+	//sending a pointer
+	return &newStruc
+
+}
+
 // Load prices from a file one price on each line
 func (job *TaxIncludedPriceJob) LoadData() {
 
@@ -31,18 +44,6 @@ func (job *TaxIncludedPriceJob) LoadData() {
 
 }
 
-func NewTaxIncludedPriceJob(taxrate float64) *TaxIncludedPriceJob {
-	// returns a taxincluded price job
-
-	newStruc := TaxIncludedPriceJob{
-		TaxRate:     taxrate,
-		InputPrices: []float64{},
-	}
-	//sending a pointer
-	return &newStruc
-
-}
-
 // takes pointer to the job and deos not make a copy
 func (job *TaxIncludedPriceJob) Process() {
 	job.LoadData()
@@ -50,5 +51,8 @@ func (job *TaxIncludedPriceJob) Process() {
 	for _, price := range job.InputPrices {
 		result[fmt.Sprintf("%.2f", price)] = price * (1 + job.TaxRate)
 	}
-	fmt.Println(result)
+
+	job.TaxIncludedPrices = result
+	filemanager.WriteJson(fmt.Sprintf("result_%.0f_prices.json", job.TaxRate*100), job)
+
 }
