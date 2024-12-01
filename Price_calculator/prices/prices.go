@@ -3,6 +3,7 @@ package prices
 import (
 	"example/price_calculator/conversion"
 	"example/price_calculator/filemanager"
+
 	"fmt"
 )
 
@@ -10,15 +11,17 @@ type TaxIncludedPriceJob struct {
 	TaxRate           float64
 	InputPrices       []float64
 	TaxIncludedPrices map[string]float64
+	IoManager         filemanager.FileManager
 }
 
 // contructor for the price job obj
-func NewTaxIncludedPriceJob(taxrate float64) *TaxIncludedPriceJob {
+func NewTaxIncludedPriceJob(fm filemanager.FileManager, taxrate float64) *TaxIncludedPriceJob {
 	// returns a taxincluded price job
 
 	newStruc := TaxIncludedPriceJob{
 		TaxRate:     taxrate,
 		InputPrices: []float64{},
+		IoManager:   fm,
 	}
 	//sending a pointer
 	return &newStruc
@@ -28,7 +31,7 @@ func NewTaxIncludedPriceJob(taxrate float64) *TaxIncludedPriceJob {
 // Load prices from a file one price on each line
 func (job *TaxIncludedPriceJob) LoadData() {
 
-	lines, err := filemanager.ReadLines("prices/prices.txt")
+	lines, err := job.IoManager.ReadLines()
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -53,6 +56,6 @@ func (job *TaxIncludedPriceJob) Process() {
 	}
 
 	job.TaxIncludedPrices = result
-	filemanager.WriteJson(fmt.Sprintf("result_%.0f_prices.json", job.TaxRate*100), job)
+	job.IoManager.WriteJson(job)
 
 }
