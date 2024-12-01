@@ -8,10 +8,11 @@ import (
 )
 
 type TaxIncludedPriceJob struct {
-	TaxRate           float64
-	InputPrices       []float64
-	TaxIncludedPrices map[string]float64
-	IoManager         filemanager.FileManager
+	TaxRate           float64            `json:"tax_rate"`
+	InputPrices       []float64          `json:"input_prices"`
+	TaxIncludedPrices map[string]float64 `json:"tax_inlcuded_prices"`
+	// the json tag says that it will be ignored in output json
+	IoManager filemanager.FileManager `json:"-"`
 }
 
 // contructor for the price job obj
