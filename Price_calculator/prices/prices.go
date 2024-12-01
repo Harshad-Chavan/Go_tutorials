@@ -3,7 +3,6 @@ package prices
 import (
 	"example/price_calculator/conversion"
 	"example/price_calculator/filemanager"
-
 	"fmt"
 )
 
