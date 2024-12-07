@@ -11,7 +11,7 @@ import (
 
 func main() {
 	//initialzie db
-	db.InitDB()
+	db.InitDB("sqlite3")
 
 	// this configures default http server that has some basic functionalities
 	server := gin.Default()

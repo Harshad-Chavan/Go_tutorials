@@ -6,18 +6,44 @@ import (
 
 	// special syntax we will not directly use it we will intereact with database/sql pacakge that is standard library
 	// _ is required as we need it...ohterwise saving will remove it
+	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
+)
+
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "postgres"
+	password = "admin"
+	dbname   = "harshad"
 )
 
 var DB *sql.DB
 
-func InitDB() {
+func InitDB(db_name string) {
 	var err error
-	DB, err = sql.Open("sqlite3", "api.db")
+
+	if db_name == "sqlite3" {
+		DB, err = sql.Open("sqlite3", "api.db")
+	}
+
+	if db_name == "postgres" {
+		psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+			"password=%s dbname=%s sslmode=disable",
+			host, port, user, password, dbname)
+		DB, err = sql.Open("postgres", psqlInfo)
+	}
 
 	if err != nil {
 		fmt.Print(err)
 		panic("Could not connect to database.")
+
+	}
+	defer DB.Close()
+
+	err = DB.Ping()
+	if err != nil {
+		panic(err)
 	}
 
 	// connection pooling
@@ -43,6 +69,7 @@ func createTables() {
 	_, err := DB.Exec(createaEventsTable)
 
 	if err != nil {
+		fmt.Println(err)
 		panic("Could not creted event table")
 	}
 
