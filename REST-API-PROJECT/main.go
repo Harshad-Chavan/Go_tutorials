@@ -3,12 +3,16 @@ package main
 import (
 	"net/http"
 
+	"example.com/mod/db"
 	"example.com/mod/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	//initialzie db
+	db.InitDB()
+
 	// this configures default http server that has some basic functionalities
 	server := gin.Default()
 
