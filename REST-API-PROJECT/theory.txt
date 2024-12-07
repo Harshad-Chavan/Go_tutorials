@@ -1,0 +1,8 @@
+Starting the project
+
+Initial step to ensure our project can receive and respond to requests
+use http package avaibalke in standar library bu this is a very basic 
+
+for better features we will use gin framework third party 
+isntall gin using go get -u github.com/gin-gonic/gin
+
