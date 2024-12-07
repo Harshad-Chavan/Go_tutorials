@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"example.com/mod/db"
@@ -31,7 +32,12 @@ func getEvents(context *gin.Context) {
 	//context.JSON(http.StatusOK, map[string]string{"message": "Hello"})
 
 	//use the getenvents func from models
-	events := models.GetAllEvents()
+	events, err := models.GetAllEvents()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch requested data"})
+		return
+	}
 
 	// gin .H has same structure as the above map map[string]any
 	//context.JSON(http.StatusOK, gin.H{"message": "Hello !"})
@@ -49,12 +55,19 @@ func createEvents(context *gin.Context) {
 	err := context.ShouldBindJSON(&event)
 
 	if err != nil {
+		fmt.Println(err)
 		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data"})
 		return
 	}
 
 	event.UserID = 1
-	event.Save()
+	err = event.Save()
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not save  data"})
+		return
+	}
 
 	context.JSON(http.StatusCreated, gin.H{"message": "Event created", "event": event})
 

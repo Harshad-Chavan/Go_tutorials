@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"example.com/mod/db"
@@ -30,7 +31,7 @@ func (e Event) Save() error {
 		return err
 	}
 
-	defer stmt.Close()
+	// defer db.Close()
 
 	// executes the statement
 	result, err := stmt.Exec(e.Name, e.Description, e.Location, e.Datetime, e.UserID)
@@ -47,6 +48,30 @@ func (e Event) Save() error {
 
 }
 
-func GetAllEvents() []Event {
-	return events
+func GetAllEvents() ([]Event, error) {
+
+	var events []Event
+
+	selectAllquery := "SELECT * FROM EVENTS"
+	rows, err := db.DB.Query(selectAllquery)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var event Event
+		err := rows.Scan(&event.ID, &event.Name, &event.Description, &event.Location, &event.Datetime, &event.UserID)
+
+		if err != nil {
+			return nil, err
+		}
+
+		events = append(events, event)
+
+	}
+
+	return events, nil
 }

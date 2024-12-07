@@ -39,12 +39,12 @@ func InitDB(db_name string) {
 		panic("Could not connect to database.")
 
 	}
-	defer DB.Close()
+	// defer DB.Close()
 
-	err = DB.Ping()
-	if err != nil {
-		panic(err)
-	}
+	// err = DB.Ping()
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	// connection pooling
 	DB.SetMaxOpenConns(10)
