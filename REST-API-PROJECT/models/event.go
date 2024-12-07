@@ -13,7 +13,7 @@ type Event struct {
 
 var events = []Event{}
 
-func (e Event) save() {
+func (e Event) Save() {
 	// store it in database
 	events = append(events, e)
 }
