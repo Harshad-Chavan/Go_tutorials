@@ -14,13 +14,15 @@ func main() {
 	var taxRates []float64 = []float64{0, 0.7, 0.1, 0.5}
 
 	doneChans := make([](chan bool), len(taxRates))
+	errorChans := make([](chan error), len(taxRates))
 
 	for index, taxrate := range taxRates {
 		IoManager := filemanager.New("prices/prices.txt", fmt.Sprintf("result_%.0f_prices.json", taxrate*100))
 		//IoManager := cmdmanager.New()
 		PriceJob := prices.NewTaxIncludedPriceJob(IoManager, taxrate)
 		doneChans[index] = make(chan bool)
-		go PriceJob.Process(doneChans[index])
+		errorChans[index] = make(chan error)
+		go PriceJob.Process(doneChans[index], errorChans[index])
 
 	}
 

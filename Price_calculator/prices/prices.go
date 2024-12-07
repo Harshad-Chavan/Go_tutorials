@@ -48,7 +48,7 @@ func (job *TaxIncludedPriceJob) LoadData() {
 }
 
 // takes pointer to the job and deos not make a copy
-func (job *TaxIncludedPriceJob) Process(done chan bool) {
+func (job *TaxIncludedPriceJob) Process(done chan bool, errchan chan error) {
 	job.LoadData()
 	result := make(map[string]float64)
 	for _, price := range job.InputPrices {
