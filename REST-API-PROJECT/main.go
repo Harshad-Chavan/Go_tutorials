@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"example.com/mod/db"
 	"example.com/mod/models"
@@ -20,6 +21,9 @@ func main() {
 	// set path and handlers
 	server.GET("/events", getEvents)
 	server.POST("/events", createEvents)
+
+	// to get dynamic ids ,values use ':var_name'
+	server.GET("/events/:id", getEvent)
 
 	// listen on port 8080 while dev it will be localhost
 	server.Run(":8080")
@@ -70,5 +74,28 @@ func createEvents(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusCreated, gin.H{"message": "Event created", "event": event})
+
+}
+
+func getEvent(context *gin.Context) {
+
+	// comtext param used to fetch values from the url
+	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not  requested id "})
+		return
+	}
+
+	event, err := models.GetEventById(eventId)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not fetch requested event"})
+		return
+	}
+
+	context.JSON(http.StatusOK, event)
 
 }

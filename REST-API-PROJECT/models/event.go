@@ -75,3 +75,25 @@ func GetAllEvents() ([]Event, error) {
 
 	return events, nil
 }
+
+// returning a pointer to event as
+// we cannot send nil for a struct
+// either any empty struct or filled struct
+func GetEventById(id int64) (*Event, error) {
+
+	var event Event
+
+	selectById := "Select * from EVENTS where ID = ?"
+
+	//will return only one row..as we expect
+	row := db.DB.QueryRow(selectById, id)
+
+	err := row.Scan(&event.ID, &event.Name, &event.Description, &event.Location, &event.Datetime, &event.UserID)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &event, nil
+
+}
