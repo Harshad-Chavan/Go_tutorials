@@ -78,3 +78,45 @@ func getEvent(context *gin.Context) {
 	context.JSON(http.StatusOK, event)
 
 }
+
+func updateEvent(context *gin.Context) {
+
+	// comtext param used to fetch values from the url
+	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not  requested id "})
+		return
+	}
+
+	_, err = models.GetEventById(eventId)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch requested event"})
+		return
+	}
+
+	var updatedevent models.Event
+
+	err = context.ShouldBindJSON(&updatedevent)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request data"})
+		return
+	}
+
+	updatedevent.ID = eventId
+	err = updatedevent.Update()
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not parse request data"})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Event updated succesfully"})
+
+}
