@@ -121,3 +121,24 @@ func (event Event) Update() error {
 	return err
 
 }
+
+func (event Event) DeleteEvent() error {
+
+	deleteById := "Delete from EVENTS where ID = ?"
+
+	stmt, err := db.DB.Prepare(deleteById)
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(event.ID)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

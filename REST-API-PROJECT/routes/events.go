@@ -120,3 +120,34 @@ func updateEvent(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"message": "Event updated succesfully"})
 
 }
+
+func deleteEvent(context *gin.Context) {
+
+	// comtext param used to fetch values from the url
+	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not  requested id "})
+		return
+	}
+
+	// to check event exists
+	event, err := models.GetEventById(eventId)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch requested event"})
+		return
+	}
+
+	err = event.DeleteEvent()
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not delete requested event"})
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Event deleted"})
+
+}
