@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"example.com/mod/db"
+	"example.com/mod/utils"
 )
 
 type User struct {
@@ -25,7 +26,15 @@ func (user User) Save() error {
 
 	defer stmt.Close()
 
-	result, err := stmt.Exec(user.Email, user.Password)
+	//encrypting the password using hash
+	hashedpass, err := utils.HashPassword(user.Password)
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	result, err := stmt.Exec(user.Email, hashedpass)
 
 	if err != nil {
 		fmt.Println(err)
