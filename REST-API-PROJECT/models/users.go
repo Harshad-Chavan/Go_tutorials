@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"fmt"
 
 	"example.com/mod/db"
@@ -44,6 +45,32 @@ func (user User) Save() error {
 	userId, err := result.LastInsertId()
 
 	user.ID = userId
+
+	return nil
+
+}
+
+func (user User) ValidateCredentials() error {
+
+	selectquery := `SELECT password FROM USERS Where email = ?`
+
+	row := db.DB.QueryRow(selectquery, user.Email)
+
+	var passwordFromDb string
+	err := row.Scan(&passwordFromDb)
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	// hash password and check
+	passwordIsValid := utils.CheckPassword(user.Password, passwordFromDb)
+
+	if !passwordIsValid {
+		return errors.New("Credentials Invalid")
+
+	}
 
 	return nil
 
