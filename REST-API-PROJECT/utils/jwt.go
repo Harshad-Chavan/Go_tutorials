@@ -19,5 +19,5 @@ func GenerateToken(email string, userId int64) (string, error) {
 	})
 
 	// token is generated but we convert it into a string with a secret key
-	return token.SignedString(secretkey)
+	return token.SignedString([]byte(secretkey))
 }

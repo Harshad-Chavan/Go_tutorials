@@ -52,12 +52,12 @@ func (user User) Save() error {
 
 func (user User) ValidateCredentials() error {
 
-	selectquery := `SELECT password FROM USERS Where email = ?`
+	selectquery := `SELECT Id,password FROM USERS Where email = ?`
 
 	row := db.DB.QueryRow(selectquery, user.Email)
 
 	var passwordFromDb string
-	err := row.Scan(&passwordFromDb)
+	err := row.Scan(&user.ID, &passwordFromDb)
 
 	if err != nil {
 		fmt.Println(err)
