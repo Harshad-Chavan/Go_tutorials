@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"example.com/mod/models"
-	"example.com/mod/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -32,23 +31,6 @@ func getEvents(context *gin.Context) {
 
 func createEvents(context *gin.Context) {
 	var event models.Event
-
-	//extract token from incoming request
-	token := context.Request.Header.Get("Authorization")
-
-	// these means no token was part of the request
-	if token == "" {
-		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorized"})
-		return
-	}
-
-	err, userid := utils.VeritfyToken(token)
-
-	if err != nil {
-		fmt.Println(err)
-		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not authorized"})
-		return
-	}
 
 	// if some fields are missing int he request content
 	// null values will be considered if we want to force then
