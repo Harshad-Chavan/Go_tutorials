@@ -42,7 +42,7 @@ func createEvents(context *gin.Context) {
 		return
 	}
 
-	err := utils.VeritfyToken(token)
+	err, userid := utils.VeritfyToken(token)
 
 	if err != nil {
 		fmt.Println(err)
@@ -61,7 +61,7 @@ func createEvents(context *gin.Context) {
 		return
 	}
 
-	event.UserID = 1
+	event.UserID = userid
 
 	err = event.Save()
 

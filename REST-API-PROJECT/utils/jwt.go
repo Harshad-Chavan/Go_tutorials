@@ -23,29 +23,28 @@ func GenerateToken(email string, userId int64) (string, error) {
 	return token.SignedString([]byte(secretkey))
 }
 
-func VeritfyToken(token string) error {
+func VeritfyToken(token string) (error, int64) {
 
 	// this Parse will parse the token
 	// post parsing the token it will verify that the method used to sign the token is as expected
 	parsedtoken, err := jwt.Parse(token, verifySigningMethod)
 
 	if err != nil {
-		return errors.New("could not parse token ")
+		return errors.New("could not parse token "), 0
 	}
 
 	if !parsedtoken.Valid {
-		return errors.New("Invalid Token")
+		return errors.New("Invalid Token"), 0
 	}
 
-	// claims, ok := parsedtoken.Claims.(jwt.MapClaims)
-	// if !ok {
-	// 	return errors.New("Invalid claims")
-	// }
+	claims, ok := parsedtoken.Claims.(jwt.MapClaims)
+	if !ok {
+		return errors.New("Invalid claims"), 0
+	}
 
-	// email := claims["email"].(string)
-	// userid := claims["userid"].(int64)
+	userid := claims["userid"].(int64)
 
-	return nil
+	return nil, userid
 }
 
 func verifySigningMethod(token *jwt.Token) (interface{}, error) {
