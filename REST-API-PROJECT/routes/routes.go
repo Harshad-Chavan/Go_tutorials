@@ -17,13 +17,18 @@ func RegisterRoutes(server *gin.Engine) {
 	//another apporach to use it for multiple routes ate once
 	// create a group and add the route required in the group
 	authentcated := server.Group("/")
+
+	// Events routess
 	authentcated.Use(middlewares.Authenticate)
 	authentcated.POST("/events", createEvents)
 	authentcated.PUT("/events/:id", updateEvent)
 	authentcated.DELETE("/events/:id", deleteEvent)
-
 	// to get dynamic ids ,values use ':var_name'
 	server.GET("/events/:id", getEvent)
+
+	//registration routes
+	authentcated.POST("/events/:id/register", registerForEvent)
+	authentcated.DELETE("/events/:id/register", cancelForEvent)
 
 	//User Routes
 	server.POST("/signup", signup)
