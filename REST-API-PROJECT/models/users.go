@@ -50,7 +50,7 @@ func (user User) Save() error {
 
 }
 
-func (user User) ValidateCredentials() error {
+func (user *User) ValidateCredentials() error {
 
 	selectquery := `SELECT Id,password FROM USERS Where email = ?`
 
