@@ -3,7 +3,7 @@ content-Type: application/application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cGlyZSI6MTczNDI2NjQ5NywidXNlcklkIjoyfQ.29ua45uA8G7-duEildFcHOHq44luT0R9TCCLG82Be3E
 
 {
-    "name" : "user 2 event",
+    "name" : "user 2 middelware event check",
     "description" : "this is a test event",
     "location" : "amsterdam",
     "datetime": "2025-01-01T15:30:00.000Z"

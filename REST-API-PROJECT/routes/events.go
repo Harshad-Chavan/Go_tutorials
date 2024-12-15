@@ -35,7 +35,7 @@ func createEvents(context *gin.Context) {
 	// if some fields are missing int he request content
 	// null values will be considered if we want to force then
 	// add tags in event struct
-	err = context.ShouldBindJSON(&event)
+	err := context.ShouldBindJSON(&event)
 
 	if err != nil {
 		fmt.Println(err)
@@ -43,7 +43,7 @@ func createEvents(context *gin.Context) {
 		return
 	}
 
-	event.UserID = userid
+	event.UserID = context.GetInt64("userid")
 
 	err = event.Save()
 

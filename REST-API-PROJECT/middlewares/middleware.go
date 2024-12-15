@@ -28,6 +28,10 @@ func Authenticate(context *gin.Context) {
 		return
 	}
 
+	//add it to the context and send it to next event handler
+	context.Set("userid", userid)
+
+	//this will call the nect event handler
 	context.Next()
 
 }
