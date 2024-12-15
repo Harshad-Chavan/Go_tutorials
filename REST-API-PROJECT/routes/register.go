@@ -42,5 +42,28 @@ func registerForEvent(context *gin.Context) {
 }
 
 func cancelForEvent(context *gin.Context) {
+	userid := context.GetInt64("userid")
+
+	// comtext param used to fetch values from the url
+	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Could not  parse requested id "})
+		return
+	}
+
+	var event models.Event
+
+	event.ID = eventId
+	event.UserID = userid
+
+	err = event.CancelRegisteration()
+
+	if err != nil {
+		fmt.Println(err)
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could can the registration"})
+		return
+	}
 
 }
